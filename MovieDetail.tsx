@@ -1,47 +1,205 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-
+import { Text, View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 type MovieDetailProps = {
+  title: string;
+  description: string;
   rating: number;
   peopleWatching: number;
+  urlImageBanner: string;
+  urlImageProfile: string;
+  genders: string;
 }
 
 export class MovieDetail extends Component<MovieDetailProps> {
-  title = 'Justice League';
-  description = `Thousands of years ago, Steppenwolf and his legions of Parademons had attempted to take over the Earth using the combined energies of the three Mother Boxes. The attempt was foiled by a unified alliance including the Olympian Gods, Amazons, Atlanteans, humanity, and extraterrestrial beings.[N 3] After Steppenwolf's army was repelled, the Mother Boxes were separated and hidden in different locations. In the present, humanity is still in mourning two years after Superman's death, which triggered the Mother Boxes' reactivation and Steppenwolf's return to Earth. Steppenwolf aims to regain favor with his master Darkseid by gathering the boxes to form "The Unity", which will destroy Earth's ecology and terraform it in the image of Steppenwolf's homeworld.`
-  rating = 9.8;
+
+  deviceDimention = Dimensions.get('window')
+  gradientBackgroundHeader = ['transparent', 'transparent', '#000000']
+  gradientPlay = ['#F8A000', '#EC703A', '#E24572']
 
   constructor(props: MovieDetailProps) {
-    console.log('Movie Detail', props);
     super(props);
+    console.log('Movie Detail', props);
   }
 
   render() {
     const {
+      title,
+      description,
       rating,
       peopleWatching,
+      urlImageBanner,
+      urlImageProfile,
+      genders
     } = this.props;
 
     return (
       <View>
-        <Text>
-          {this.title}
+        {/* HEADER WITH IMAGE AND PLAY BUTTON */}
+        <View
+          style={{ width: this.deviceDimention.width, height: this.deviceDimention.height * 0.4, justifyContent: 'center', alignItems: 'center' }}>
+          <Image
+            style={styles.absoluteInContainer}
+            resizeMode="cover"
+            source={{
+              uri: urlImageBanner,
+            }}
+          />
+          <LinearGradient
+            style={[styles.absoluteInContainer, { position: 'absolute' }]}
+            colors={this.gradientBackgroundHeader}
+          />
+          <TouchableOpacity
+            style={styles.playContainer}
+            onPress={() => console.log("PLAY")}>
+            <LinearGradient
+              colors={this.gradientPlay}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.playContainer}>
+              <Ionicons name="play-sharp" size={24} color="white" />
+            </LinearGradient>
+          </TouchableOpacity>
+          {/* GO BACK COMPONENT */}
+          <View style={styles.topHeaderContainer}>
+            <TouchableOpacity style={styles.goBackContainer}>
+              <Ionicons name="ios-chevron-back" size={30} color="white" />
+              <Text style={styles.backText}>Back</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Ionicons name="share-outline" size={30} color="white" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* MOVIE DETAIL IN THE MIDDLE */}
+        <View style={styles.containerDetail}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={[styles.absoluteInContainer, { borderRadius: 7 }]}
+              source={{
+                uri: urlImageProfile,
+              }}
+            />
+          </View>
+          <View style={styles.detailMovieContainer}>
+            <Text
+              numberOfLines={2}
+              style={styles.titleMovie}>
+              {title}
+            </Text>
+            <View style={styles.bottomContainerDetail}>
+              <Text>
+                {peopleWatching} People Watching
+              </Text>
+              <Text style={{ marginVertical: 8 }}>
+                {genders}
+              </Text>
+              {/* RAITING MOVIE */}
+              <View style={styles.raitingContainer}>
+                <Text style={{ color: "#DE3321" }}>
+                  {rating}
+                </Text>
+                <View
+                  style={styles.starsContainer}
+                >
+                  <Ionicons name="star" size={14} color="#DE3321" />
+                  <Ionicons name="star" size={14} color="#DE3321" />
+                  <Ionicons name="star" size={14} color="#DE3321" />
+                  <Ionicons name="star" size={14} color="#DE3321" />
+                  <Ionicons name="star" size={14} color="#D8D8D8" />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <Text numberOfLines={5} style={{ margin: 16, lineHeight: 30, color: 'gray' }}  >
+          {description}
         </Text>
 
-        <Text>
-          {rating}
-        </Text>
-
-        <Text>
-          {peopleWatching} People Watching
-        </Text>
-
-        <Text numberOfLines={3}>
-          {this.description}
-        </Text>
       </View>
     )
   }
 }
+const styles = StyleSheet.create({
+  absoluteInContainer: {
+    width: "100%",
+    height: "100%"
+  },
+  // HEADER CONTAINER WITH IMAGE AND PLAY ICON
+  playContainer: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  //CONTAINER DETAIL MOVIE CENTER
+  containerDetail: {
+    width: '100%',
+    paddingHorizontal: 16,
+    height: 180,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: -80
+  },
+  imageContainer: {
+    width: 120,
+    height: 188,
+    elevation: 20,
+    backgroundColor: 'grey',
+    shadowColor: '#E44C6A',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    borderRadius: 7,
+  },
+  detailMovieContainer: {
+    width: '60%',
+    height: 180
+  },
+  titleMovie: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: '800'
+  },
+  bottomContainerDetail: {
+    position: 'absolute',
+    bottom: 8,
+    width: '100%'
+  },
+  raitingContainer: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+  starsContainer: {
+    width: 110,
+    justifyContent: 'space-around',
+    marginLeft: 8,
+    flexDirection: 'row'
+  },
+  // TOP OF HEADER
+  topHeaderContainer: {
+    width: '100%',
+    paddingHorizontal: 16,
+    height: 50,
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 32,
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  goBackContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  backText: {
+    fontSize: 20,
+    color: "white",
+    fontWeight: '600'
+  }
 
+});
 export default MovieDetail
