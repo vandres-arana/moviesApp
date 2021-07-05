@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import MovieDetail from './screens/MovieDetail';
 import { ProfileScreen } from './screens/ProfileScreen';
@@ -32,8 +32,8 @@ export default class App extends React.Component {
 ]
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar style="light" />
+      <SafeAreaView style={styles.container}>
+        <StatusBar />
         <ProfileScreen
         image = "https://cdn3.vectorstock.com/i/1000x1000/10/07/paper-cut-smile-face-icon-isolated-on-black-vector-28211007.jpg"
         name = "Josue Lemus"
@@ -42,7 +42,7 @@ export default class App extends React.Component {
         comments = {320}
         movies = {this.movieList}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
