@@ -5,26 +5,42 @@ import MovieDetail from './screens/MovieDetail';
 import { ProfileScreen } from './screens/ProfileScreen';
 
 export default class App extends React.Component {
+  movieList = ["https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
+  "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
+  "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
+  "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg"
+]
   render() {
     return (
       <View style={styles.container}>
         <StatusBar style="light" />
-        {/* <MovieDetail
-          rating={9.2}
-          peopleWatching={5200}
-          urlImageBanner={'https://i.ytimg.com/vi/8GltZA7F7-M/maxresdefault.jpg'}
-          urlImageProfile={'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/cover_290x414/public/media/image/2019/02/rMEfTRA5BEbuVweTF1cQZiT7WdZ.jpg?itok=gfuWJ2F5'}
-          genders= {"Action, Adventure"}
-          title = {'Space Jam: A New Legacy (2021)'}
-          description = {`Space Jam: A New Legacy (also known as Space Jam 2) is an upcoming American live-action/animated sports comedy film directed by Malcolm D. Lee, serving as a standalone sequel to Space Jam (1996). It will mark the first theatrically-released film to feature the Looney Tunes characters since Looney Tunes: Back in Action (2003), and like the previous hybrid films, it will be a combination of live-action, traditional hand-drawn animation, and 3D CGI effects. The film stars basketball player LeBron James as a fictionalized version of himself along with Don Cheadle, Khris Davis, and Sonequa Martin-Green in live-action roles, while Jeff Bergman, Eric Bauza, and Zendaya headline the Looney Tunes voice cast.`}
-        /> */}
         <ProfileScreen
-        image = "https://img.europapress.es/fotoweb/fotonoticia_20181221175313_1200.jpg"
+        image = "https://cdn3.vectorstock.com/i/1000x1000/10/07/paper-cut-smile-face-icon-isolated-on-black-vector-28211007.jpg"
         name = "Josue Lemus"
         likes = {23}
         watching = {100}
         comments = {320}
-        movies = {['HOLA']}
+        movies = {this.movieList}
         />
       </View>
     );

@@ -11,34 +11,9 @@ type ProfileScreenProps = {
     likes: number;
     watching: number;
     comments: number;
-    movies: [string];
+    movies: string[];
 }
 export class ProfileScreen extends Component<ProfileScreenProps> {
-    moviesTest = ["https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg",
-        "https://i.pinimg.com/474x/4a/a7/09/4aa709fb827464c325ee3c63f07b8a6c.jpg",
-        "https://gcdn.emol.cl/comics/files/2019/04/dceased04.jpg",
-        "https://i.pinimg.com/736x/c2/49/78/c2497819e6b99cc35c73a9fcde98a6f4.jpg"
-    ]
     constructor(props: ProfileScreenProps) {
         super(props);
         console.log('Movie Detail', props);
@@ -98,7 +73,7 @@ export class ProfileScreen extends Component<ProfileScreenProps> {
                 <View style={{ flex: 4 }}>
                     <ScrollView style={{ flex: 1 }}>
                         <View style={styles.movieListContainer}>
-                            {this.moviesTest.map((movie) =>
+                            {movies.map((movie) =>
                                 <View style={styles.imageMovieContainer}>
                                     <Image
                                         style={styles.imageMovie}
