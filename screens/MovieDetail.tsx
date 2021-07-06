@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Dimensions, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+
+import MovieRating from '../components/MovieRating';
+
 type MovieDetailProps = {
   title: string;
   description: string;
@@ -10,9 +13,15 @@ type MovieDetailProps = {
   urlImageBanner: string;
   urlImageProfile: string;
   genders: string;
+  tomatometer: number;
 }
 
-export class MovieDetail extends Component<MovieDetailProps> {
+type MovieDetailState = {
+  imdbRating: number;
+  tomatometer: number;
+}
+
+export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
 
   deviceDimention = Dimensions.get('window')
   gradientBackgroundHeader = ['transparent', 'transparent', '#000000']
@@ -21,6 +30,22 @@ export class MovieDetail extends Component<MovieDetailProps> {
   constructor(props: MovieDetailProps) {
     super(props);
     console.log('Movie Detail', props);
+
+    this.state = {
+      imdbRating: 5.2,
+      tomatometer: this.props.tomatometer,
+    }
+  }
+
+  changeRating = () => {
+    const { imdbRating, tomatometer } = this.state;
+
+    this.setState({
+      imdbRating: imdbRating + 0.1,
+      tomatometer: tomatometer + 1,
+    }, () => {
+      console.log('NEW Rating', this.state);
+    });
   }
 
   render() {
@@ -31,8 +56,13 @@ export class MovieDetail extends Component<MovieDetailProps> {
       peopleWatching,
       urlImageBanner,
       urlImageProfile,
-      genders
+      genders,
     } = this.props;
+
+    const {
+      imdbRating,
+      tomatometer,
+    } = this.state;
 
     return (
       <View>
@@ -89,6 +119,19 @@ export class MovieDetail extends Component<MovieDetailProps> {
               style={styles.titleMovie}>
               {title}
             </Text>
+
+            <MovieRating
+              imdbRating={imdbRating}
+              tomatometer={tomatometer}
+              onChangeRating={this.changeRating}
+            />
+
+            {/* TODO: Refactor - Move to Other component
+              Favorite: Color = Blue
+              Not Favorite: Color = Black
+            */}
+            <Button title="Mark as Favorite" onPress={() => null} color="black"  />
+
             <View style={styles.bottomContainerDetail}>
               <Text>
                 {peopleWatching} People Watching
@@ -199,7 +242,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     fontWeight: '600'
-  }
-
+  },
 });
 export default MovieDetail
