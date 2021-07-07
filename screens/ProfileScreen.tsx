@@ -37,7 +37,6 @@ export class MovieDetail extends React.Component<{
 export class ProfileScreen extends Component<ProfileScreenProps> {
   constructor(props: ProfileScreenProps) {
     super(props);
-    console.log('Movie Detail', props);
   }
 
   movieDetail(properties: {

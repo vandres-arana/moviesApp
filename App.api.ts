@@ -1,0 +1,36 @@
+import Movie from './models/movie';
+
+export const allMovies: Movie[] = [{
+  id: 1,
+  title: 'Justice League',
+  description: `Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his newfound ally, Diana Prince, to face an even greater enemy...`,
+  rating: 8.2,
+  peopleWatching: 1200,
+  urlImageBanner: 'https://tvline.com/wp-content/uploads/2021/01/justice-league.jpg?w:620',
+  urlImageProfile: 'https://upload.wikimedia.org/wikipedia/en/2/26/Justice_League.png',
+  genders: '',
+  tomatometer: 60,
+  isFavorite: false,
+}, {
+  id: 2,
+  title: 'Justice League',
+  description: `Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his newfound ally, Diana Prince, to face an even greater enemy...`,
+  rating: 8.2,
+  peopleWatching: 1200,
+  urlImageBanner: 'https://tvline.com/wp-content/uploads/2021/01/justice-league.jpg?w:620',
+  urlImageProfile: 'https://upload.wikimedia.org/wikipedia/en/2/26/Justice_League.png',
+  genders: '',
+  tomatometer: 60,
+  isFavorite: false,
+}, {
+  id: 3,
+  title: 'Justice League',
+  description: `Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his newfound ally, Diana Prince, to face an even greater enemy...`,
+  rating: 8.2,
+  peopleWatching: 1200,
+  urlImageBanner: 'https://tvline.com/wp-content/uploads/2021/01/justice-league.jpg?w:620',
+  urlImageProfile: 'https://upload.wikimedia.org/wikipedia/en/2/26/Justice_League.png',
+  genders: '',
+  tomatometer: 60,
+  isFavorite: false,
+}]

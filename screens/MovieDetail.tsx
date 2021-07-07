@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import MovieRating from '../components/MovieRating';
 
 type MovieDetailProps = {
+  id: number,
   title: string;
   description: string;
   rating: number;
@@ -14,6 +15,9 @@ type MovieDetailProps = {
   urlImageProfile: string;
   genders: string;
   tomatometer: number;
+  isFavorite: boolean;
+
+  toggleFavorite: () => void;
 }
 
 type MovieDetailState = {
@@ -29,7 +33,6 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
 
   constructor(props: MovieDetailProps) {
     super(props);
-    console.log('Movie Detail', props);
 
     this.state = {
       imdbRating: 5.2,
@@ -48,7 +51,25 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
     });
   }
 
+  toggleFavorite = () => {
+    this.props.toggleFavorite();
+  }
+
+  componentDidMount() {
+    console.log(`Movie Detail #${this.props.id} was mount`);
+  }
+
+  componentDidUpdate() {
+    console.log(`Movie Detail #${this.props.id} was updated`);
+  }
+
+  componentWillUnmount() {
+    console.log(`Movie Detail #${this.props.id} was unmount - Good Bye!`);
+  }
+
   render() {
+    console.log(`MovieDetail - Render #${this.props.id}`)
+
     const {
       title,
       description,
@@ -57,6 +78,7 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
       urlImageBanner,
       urlImageProfile,
       genders,
+      isFavorite,
     } = this.props;
 
     const {
@@ -130,7 +152,6 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
               Favorite: Color = Blue
               Not Favorite: Color = Black
             */}
-            <Button title="Mark as Favorite" onPress={() => null} color="black"  />
 
             <View style={styles.bottomContainerDetail}>
               <Text>
@@ -160,6 +181,11 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
         <Text numberOfLines={5} style={{ margin: 16, lineHeight: 30, color: 'gray' }}  >
           {description}
         </Text>
+        <TouchableOpacity style={styles.button} onPress={this.toggleFavorite} >
+          <Text style={styles.textButton}>
+            {!isFavorite ? "Mark as Favorite" : "UnMark as Favorite"}
+          </Text>
+        </TouchableOpacity>
 
       </View>
     )
@@ -243,5 +269,14 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: '600'
   },
+  button: {
+    backgroundColor: 'black',
+    padding: 8,
+    alignItems: 'center',
+  },
+  textButton: {
+    color: 'white',
+    textTransform: 'uppercase',
+  }
 });
 export default MovieDetail
