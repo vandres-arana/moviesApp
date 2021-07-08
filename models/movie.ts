@@ -6,7 +6,7 @@ export default interface Movie {
   peopleWatching: number;
   urlImageBanner: string;
   urlImageProfile: string;
-  genders: string;
+  genders: number[];
   tomatometer: number;
   isFavorite: boolean;
 }

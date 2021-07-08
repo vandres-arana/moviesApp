@@ -13,7 +13,7 @@ type MovieDetailProps = {
   peopleWatching: number;
   urlImageBanner: string;
   urlImageProfile: string;
-  genders: string;
+  genders: number[];
   tomatometer: number;
   isFavorite: boolean;
 
@@ -147,11 +147,6 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
               tomatometer={tomatometer}
               onChangeRating={this.changeRating}
             />
-
-            {/* TODO: Refactor - Move to Other component
-              Favorite: Color = Blue
-              Not Favorite: Color = Black
-            */}
 
             <View style={styles.bottomContainerDetail}>
               <Text>

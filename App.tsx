@@ -1,16 +1,31 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, Text, VirtualizedList } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import MovieDetail from './screens/MovieDetail';
 import { ProfileScreen } from './screens/ProfileScreen';
 import { allMovies } from './App.api';
+import { getPopular } from './services/MovieApi';
+import Movie from './models/movie';
 
 type AppProps = {
 }
-export default class App extends React.Component<AppProps> {
-  state = {
-    movies: allMovies,
+
+type AppState = {
+  movies: Movie[];
+}
+export default class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = {
+      movies: [],
+    };
+  }
+
+  loadApp = async () => {
+    const movies = await getPopular();
+    this.setState({ movies });
   }
 
   countFavorites = () => {
@@ -27,6 +42,10 @@ export default class App extends React.Component<AppProps> {
     this.setState({ movies })
   }
 
+  componentDidMount() {
+    this.loadApp();
+  }
+
   render() {
     const favorites = this.countFavorites();
     const { movies } = this.state;
@@ -38,14 +57,8 @@ export default class App extends React.Component<AppProps> {
           TOTAL Favorites: {favorites || 0}
         </Text>
 
-        <ScrollView>
+        {/* <ScrollView>
           {movies.map((movie, index) => {
-            if (movie.isFavorite) {
-              return <Text key={movie.id}>
-                {movie.title} is Favorite!
-              </Text>
-            }
-
             return (
               <MovieDetail
                 key={movie.id}
@@ -54,7 +67,21 @@ export default class App extends React.Component<AppProps> {
               />
             )
           })}
-        </ScrollView>
+        </ScrollView> */}
+
+        <VirtualizedList
+          data={movies}
+          initialNumToRender={2}
+          renderItem={({ item }) => (
+            <MovieDetail
+              {...item}
+              toggleFavorite={this.toggleMovieIsFavorite(0)}
+            />
+          )}
+          keyExtractor={(item: Movie) => item.id.toString()}
+          getItemCount={() => movies.length}
+          getItem={(data, index) => movies[index]}
+        />
       </SafeAreaView>
     );
   }
