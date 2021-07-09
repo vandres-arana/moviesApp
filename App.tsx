@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import MovieDetail from './screens/MovieDetail';
 import { ProfileScreen } from './screens/ProfileScreen';
 import { allMovies } from './App.api';
-import { getPopular } from './services/MovieApi';
+import { getGenres, getPopular } from './services/MovieApi';
 import Movie from './models/movie';
 
 type AppProps = {
@@ -25,6 +25,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
   loadApp = async () => {
     const movies = await getPopular();
+    const genres = await getGenres();
+    localStorage.setItem('genres', JSON.stringify(genres))
     this.setState({ movies });
   }
 

@@ -67,6 +67,19 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
     console.log(`Movie Detail #${this.props.id} was unmount - Good Bye!`);
   }
 
+  getGenresNames(genres: number[]) {
+    var genresNames = ""
+    const saveGenres = JSON.parse(localStorage. getItem('genres'));
+    genres.forEach(genreId => {
+      saveGenres.forEach(saveGenre => {
+        if (saveGenre.id === genreId) {
+          genresNames += ` ${saveGenre.name}`
+        }
+      })
+    })
+    return genresNames
+  }
+
   render() {
     console.log(`MovieDetail - Render #${this.props.id}`)
 
@@ -80,6 +93,8 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
       genders,
       isFavorite,
     } = this.props;
+
+    const genresNames = this.getGenresNames(genders)
 
     const {
       imdbRating,
@@ -153,7 +168,7 @@ export class MovieDetail extends Component<MovieDetailProps, MovieDetailState> {
                 {peopleWatching} People Watching
               </Text>
               <Text style={{ marginVertical: 8 }}>
-                {genders}
+                {genresNames}
               </Text>
               {/* RAITING MOVIE */}
               <View style={styles.raitingContainer}>
